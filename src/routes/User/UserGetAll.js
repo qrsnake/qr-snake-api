@@ -1,6 +1,7 @@
+import select from '../../database/Select';
 const usergetall = (req, res) => {
   /*
-  const { data } = select();
+  const { data } = select(null, 'user');
   if(data == null){
     res.status(404).send(data);
   }
