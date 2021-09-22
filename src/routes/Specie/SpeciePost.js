@@ -1,7 +1,14 @@
 const speciepost = (req, res) => {
-  const { data } = req.body;
-  console.log(req.body, req.query);
-  res.status(200).send('Hello World!!!');
+  const { body } = req.body;
+  /*
+  const { id } = insert(id, body);
+  if(data == null){
+    res.status(400).send(id);
+  }
+  else{
+    res.status(201).send(id);
+  }
+  */
 };
 
 export default speciepost;

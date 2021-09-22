@@ -1,7 +1,15 @@
 const speciedelete = (req, res) => {
   const { id } = req.params;
-  console.log(req.body, req.query);
-  res.status(200).send('Hello World!!!');
+  /*
+  const { data } = select(id);
+  if(data == null){
+    res.status(404).send(data);
+  }
+  else{
+    delete(id)
+    res.status(200).send(data);
+  }
+  */
 };
 
 export default speciedelete;
