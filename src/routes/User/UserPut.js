@@ -1,5 +1,6 @@
 import update from '../../database/Update';
 import select from '../../database/Select';
+
 const userput = (req, res) => {
   const { id } = req.params;
   const { body } = req.body;

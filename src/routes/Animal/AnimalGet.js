@@ -1,4 +1,5 @@
 import select from '../../database/Select';
+
 const animalget = (req, res) => {
   const { id } = req.params;
   /*

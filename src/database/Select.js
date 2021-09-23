@@ -1,11 +1,25 @@
-const select = (id, table) => {
-  const conn = connect()
-  if(id == null){
-    const res = conn.querry(`SELECT * FROM ${table};`);
+import client from './db';
+
+const select = async (id, table) => {
+  let res = null;
+  if (id == null) {
+    try {
+      const text = 'SELECT * FROM $1;';
+      const values = [table];
+      res = await client.query(text, values);
+    } catch (err) {
+      console.log(err.stack);
+    }
+  } else {
+    try {
+      const text = 'SELECT * FROM $1 WHERE id = $2;';
+      const values = [table, id];
+      res = await client.query(text, values);
+    } catch (err) {
+      console.log(err.stack);
+    }
   }
-  else{
-    const res = conn.querry(`SELECT * FROM ${table} WHERE id = ${id};`);
-  }
+  return res;
 };
 
 export default select;

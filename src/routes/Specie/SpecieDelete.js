@@ -1,5 +1,6 @@
 import del from '../../database/Delete';
 import select from '../../database/Select';
+
 const speciedelete = (req, res) => {
   const { id } = req.params;
   /*
