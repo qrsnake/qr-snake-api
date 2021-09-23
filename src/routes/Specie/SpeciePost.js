@@ -1,16 +1,13 @@
-import select from '../../database/Select';
+import insert from '../../database/Select';
 
 const speciepost = (req, res) => {
   const { body } = req.body;
-  /*
-  const { id } = insert(body, 'specie');
-  if(data == null){
-    res.status(400).send(id);
+  const data = insert(body, 'specie');
+  if (data == null) {
+    res.status(400).send(data.id);
+  } else {
+    res.status(201).send(data.id);
   }
-  else{
-    res.status(201).send(id);
-  }
-  */
 };
 
 export default speciepost;
