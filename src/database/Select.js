@@ -1,7 +1,8 @@
-import client from './db';
+import connection from './db';
 
 const select = async (id, table) => {
   let res = null;
+  const client = connection();
   if (id == null) {
     try {
       const text = 'SELECT * FROM $1;';

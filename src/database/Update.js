@@ -1,7 +1,8 @@
-import client from './db';
+import connection from './db';
 
 const update = async (id, data, table) => {
   let res = null;
+  const client = connection();
   try {
     const text = 'UPDATE $1 SET (id, $2) = (DEFAULT, $3) WHERE id = $4;';
     const auxkeys = '';

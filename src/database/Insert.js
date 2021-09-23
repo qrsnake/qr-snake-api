@@ -1,7 +1,8 @@
-import client from './db';
+import connection from './db';
 
 const insert = async (data, table) => {
   let res = null;
+  const client = connection();
   try {
     const text = 'INSERT INTO $1 VALUES(DEFAULT, $2);';
     const aux = '';
