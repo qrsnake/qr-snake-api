@@ -1,8 +1,11 @@
+import dotenv from 'dotenv';
 import express from 'express';
 import router from './routes';
 
-const app = express();
+dotenv.config();
 
+const app = express();
+console.log(process.env.DATABASE_URL);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
