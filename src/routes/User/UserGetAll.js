@@ -1,4 +1,5 @@
 import select from '../../database/Select';
+
 const usergetall = (req, res) => {
   /*
   const { data } = select(null, 'user');

@@ -1,4 +1,5 @@
 import select from '../../database/Select';
+
 const usergetid = (req, res) => {
   const { id } = req.params;
   /*

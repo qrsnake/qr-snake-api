@@ -1,5 +1,6 @@
 import del from '../../database/Delete';
 import select from '../../database/Select';
+
 const userdelete = (req, res) => {
   const { id } = req.params;
   /*
