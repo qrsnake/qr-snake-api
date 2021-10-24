@@ -23,9 +23,9 @@ const router = (app) => {
   app.delete('/animal/:id', animaldelete);
   app.delete('/specie/:id', speciedelete);
   app.delete('/user/:id', userdelete);
-  app.post('/animal/', animalpost);
-  app.post('/specie/', speciepost);
-  app.post('/user/', userpost);
+  app.post('/animal', animalpost);
+  app.post('/specie', speciepost);
+  app.post('/user', userpost);
 };
 
 export default router;
