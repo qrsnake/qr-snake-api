@@ -16,6 +16,7 @@ const insert = async (data, table) => {
   } catch (err) {
     console.log(err.stack);
   }
+  client.end();
   return res;
 };
 

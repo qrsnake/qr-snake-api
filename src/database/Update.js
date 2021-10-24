@@ -22,6 +22,7 @@ const update = async (id, data, table) => {
   } catch (err) {
     console.log(err.stack);
   }
+  client.end();
   return res;
 };
 

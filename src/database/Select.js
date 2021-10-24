@@ -20,6 +20,7 @@ const select = async (id, table) => {
       console.log(err.stack);
     }
   }
+  client.end();
   return res;
 };
 
