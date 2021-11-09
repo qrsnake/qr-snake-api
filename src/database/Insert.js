@@ -6,7 +6,7 @@ const insert = async (tableName, data) => {
   try {
     const text = 'INSERT INTO $1 VALUES(DEFAULT, $2);';
     const aux = '';
-    const jData = JSON.values(data);
+    const jData = Object.values(data);
     jData.forEach((i) => {
       aux.concat(i, ', ');
     });

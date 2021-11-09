@@ -6,13 +6,13 @@ const update = async (tableName, fieldName, fieldValue, Data) => {
   try {
     const text = 'UPDATE $1 SET (id, $2) = (DEFAULT, $3) WHERE $4 = $5;';
     const auxKeys = '';
-    const jKeys = JSON.Keys(Data).join(', ');
+    const jKeys = Object.Keys(Data).join(', ');
     jKeys.forEach((i) => {
       auxKeys.concat(i, ', ');
     });
     auxKeys.slice(0, auxKeys.length - 2);
     const auxData = '';
-    const jData = JSON.values(Data).join(', ');
+    const jData = Object.values(Data).join(', ');
     jData.forEach((j) => {
       auxData.concat(j, ', ');
     });
