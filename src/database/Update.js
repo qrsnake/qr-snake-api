@@ -1,18 +1,18 @@
 import connection from './db';
 
-const update = async (tableName, fieldName, fieldValue, Data) => {
+const update = async (tableName, fieldName, fieldValue, data) => {
   let res = null;
   const client = connection();
   try {
     const text = 'UPDATE $1 SET (id, $2) = (DEFAULT, $3) WHERE $4 = $5;';
     const auxKeys = '';
-    const jKeys = Object.Keys(Data).join(', ');
+    const jKeys = Object.Keys(data).join(', ');
     jKeys.forEach((i) => {
       auxKeys.concat(i, ', ');
     });
     auxKeys.slice(0, auxKeys.length - 2);
     const auxData = '';
-    const jData = Object.values(Data).join(', ');
+    const jData = Object.values(data).join(', ');
     jData.forEach((j) => {
       auxData.concat(j, ', ');
     });
