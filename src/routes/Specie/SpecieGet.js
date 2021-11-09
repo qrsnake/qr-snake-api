@@ -1,7 +1,7 @@
 import select from '../../database/Select';
 
 const specieget = (req, res) => {
-  const { data } = select(null, 'specie');
+  const { data } = select('specie', null, null);
   if (data == null) {
     res.status(404).send(data);
   } else {

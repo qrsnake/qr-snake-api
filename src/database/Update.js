@@ -1,23 +1,23 @@
 import connection from './db';
 
-const update = async (id, data, table) => {
+const update = async (tableName, fieldName, fieldValue, Data) => {
   let res = null;
   const client = connection();
   try {
-    const text = 'UPDATE $1 SET (id, $2) = (DEFAULT, $3) WHERE id = $4;';
-    const auxkeys = '';
-    const jkeys = JSON.keys(data).join(', ');
-    jkeys.forEach((i) => {
-      auxkeys.concat(i, ', ');
+    const text = 'UPDATE $1 SET (id, $2) = (DEFAULT, $3) WHERE $4 = $5;';
+    const auxKeys = '';
+    const jKeys = JSON.Keys(Data).join(', ');
+    jKeys.forEach((i) => {
+      auxKeys.concat(i, ', ');
     });
-    auxkeys.slice(0, auxkeys.length - 2);
-    const auxdata = '';
-    const jdata = JSON.values(data).join(', ');
-    jdata.forEach((j) => {
-      auxdata.concat(j, ', ');
+    auxKeys.slice(0, auxKeys.length - 2);
+    const auxData = '';
+    const jData = JSON.values(Data).join(', ');
+    jData.forEach((j) => {
+      auxData.concat(j, ', ');
     });
-    auxdata.slice(0, auxdata.length - 2);
-    const values = [table, auxkeys, auxdata, id];
+    auxData.slice(0, auxData.length - 2);
+    const values = [tableName, auxKeys, auxData, fieldName, fieldValue];
     res = await client.query(text, values);
   } catch (err) {
     console.log(err.stack);

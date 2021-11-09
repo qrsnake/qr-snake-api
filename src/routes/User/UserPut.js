@@ -4,11 +4,11 @@ import select from '../../database/Select';
 const userput = (req, res) => {
   const { id } = req.params;
   const { body } = req.body;
-  const { data } = select(id, 'user');
+  const { data } = select('user', 'id', id);
   if (data == null) {
     res.status(404).send(id);
   } else {
-    update(id, body, 'user');
+    update('user', 'id', id, body);
     res.status(200).send(id);
   }
 };

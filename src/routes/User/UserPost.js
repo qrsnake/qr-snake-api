@@ -2,7 +2,7 @@ import insert from '../../database/Select';
 
 const userpost = (req, res) => {
   const { body } = req.body;
-  const data = insert(body, 'specie');
+  const data = insert('user', body);
   if (data == null) {
     res.status(400).send(data.id);
   } else {
