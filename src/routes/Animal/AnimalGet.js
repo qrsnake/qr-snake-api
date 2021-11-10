@@ -2,11 +2,11 @@ import select from '../../database/Select';
 
 const animalget = async (req, res) => {
   const { chip } = req.params;
-  const { data } = await select('animal', 'chip', chip);
-  if (data == null) {
-    res.status(404).send(data);
+  const { rows } = await select('animals', 'chip', chip);
+  if (rows == null) {
+    res.status(404).send(rows);
   } else {
-    res.status(200).send(data);
+    res.status(200).send(rows);
   }
 };
 

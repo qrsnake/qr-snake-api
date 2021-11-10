@@ -5,7 +5,12 @@ const insert = async (tableName, data) => {
   const client = connection();
   try {
     const keys = Object.keys(data).join(', ');
-    const value = Object.values(data).map((v) => `'${v}'`).join(', ');
+    const value = Object.values(data).map((v) => {
+      if (typeof v === 'string') {
+        return `'${v}'`;
+      }
+      return v;
+    }).join(', ');
     const text = `INSERT INTO ${tableName} (${keys}) VALUES(${value});`;
     res = await client.query({ text });
   } catch (err) {

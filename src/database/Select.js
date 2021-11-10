@@ -7,7 +7,6 @@ const select = async (tableName, fieldName, fieldValue) => {
     try {
       const text = `SELECT * FROM ${tableName};`;
       res = await client.query({ text });
-      console.log(res)
     } catch (err) {
       console.log(err.stack);
     }
