@@ -5,7 +5,6 @@ import router from './routes';
 dotenv.config();
 
 const app = express();
-console.log(process.env.DATABASE_URL);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
