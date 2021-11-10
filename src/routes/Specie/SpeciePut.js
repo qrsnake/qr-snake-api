@@ -5,6 +5,7 @@ const specieput = async (req, res) => {
   const { id } = req.params;
   const { body } = req;
   const { rows } = await select('species', 'id', id);
+  console.log(rows);
   if (!rows.length) {
     res.status(404).send(id);
   } else {

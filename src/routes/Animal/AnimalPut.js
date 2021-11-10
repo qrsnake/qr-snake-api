@@ -5,6 +5,7 @@ const animalput = async (req, res) => {
   const { chip } = req.params;
   const { body } = req;
   const { rows } = await select('animals', 'chip', chip);
+  console.log(rows);
   if (!rows.length) {
     res.status(404).send(chip);
   } else {
