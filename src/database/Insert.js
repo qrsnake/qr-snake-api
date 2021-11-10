@@ -4,15 +4,10 @@ const insert = async (tableName, data) => {
   let res = null;
   const client = connection();
   try {
-    const text = 'INSERT INTO $1 VALUES(DEFAULT, $2);';
-    const aux = '';
-    const jData = Object.values(data);
-    jData.forEach((i) => {
-      aux.concat(i, ', ');
-    });
-    aux.slice(0, aux.length - 2);
-    const values = [tableName, aux];
-    res = await client.query(text, values);
+    const keys = Object.keys(data).join(', ');
+    const value = Object.values(data).map((v) => `'${v}'`).join(', ');
+    const text = `INSERT INTO ${tableName} (${keys}) VALUES(${value});`;
+    res = await client.query({ text });
   } catch (err) {
     console.log(err.stack);
   }

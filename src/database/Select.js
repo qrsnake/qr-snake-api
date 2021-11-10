@@ -5,17 +5,16 @@ const select = async (tableName, fieldName, fieldValue) => {
   const client = connection();
   if (fieldValue == null) {
     try {
-      const text = 'SELECT * FROM $1;';
-      const values = [tableName];
-      res = await client.query(text, values);
+      const text = `SELECT * FROM ${tableName};`;
+      res = await client.query({ text });
+      console.log(res)
     } catch (err) {
       console.log(err.stack);
     }
   } else {
     try {
-      const text = 'SELECT * FROM $1 WHERE $2 = $3;';
-      const values = [tableName, fieldName, fieldValue];
-      res = await client.query(text, values);
+      const text = `SELECT * FROM ${tableName} WHERE ${fieldName} = ${fieldValue};`;
+      res = await client.query({ text });
     } catch (err) {
       console.log(err.stack);
     }

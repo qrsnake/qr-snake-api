@@ -1,11 +1,11 @@
 import select from '../../database/Select';
 
 const specieget = async (req, res) => {
-  const { data } = await select('specie', null, null);
-  if (data == null) {
-    res.status(404).send(data);
+  const { rows } = await select('species', null, null);
+  if (rows == null) {
+    res.status(404).send(rows);
   } else {
-    res.status(200).send(data);
+    res.status(200).send(rows);
   }
 };
 

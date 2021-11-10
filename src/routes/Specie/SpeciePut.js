@@ -4,11 +4,12 @@ import select from '../../database/Select';
 const specieput = async (req, res) => {
   const { id } = req.params;
   const { body } = req;
-  const data = await select('specie', 'id', id);
-  if (data == null) {
+  const { rows } = await select('species', 'id', id);
+  console.log(rows);
+  if (!rows.length) {
     res.status(404).send(id);
   } else {
-    await update('specie', 'id', id, body);
+    await update('species', 'id', id, body);
     res.status(200).send(id);
   }
 };
