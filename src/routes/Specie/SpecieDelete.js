@@ -1,14 +1,15 @@
 import del from '../../database/Delete';
 import select from '../../database/Select';
 
-const speciedelete = (req, res) => {
+const speciedelete = async (req, res) => {
   const { id } = req.params;
-  const { data } = select(id, 'specie');
-  if (data == null) {
-    res.status(404).send(data);
+  const { rows } = await select('species', 'id', id);
+  console.log(rows);
+  if (!rows.length) {
+    res.status(404).send(rows);
   } else {
-    del(id, 'specie');
-    res.status(200).send(data);
+    await del('species', 'id', id);
+    res.status(200).send(rows);
   }
 };
 

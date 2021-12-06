@@ -1,12 +1,11 @@
 import connection from './db';
 
-const del = async (id, table) => {
+const del = async (tableName, fieldName, fieldValue) => {
   let res = null;
   const client = connection();
   try {
-    const text = 'DELETE FROM $1 WHERE id = $2;';
-    const values = [table, id];
-    res = await client.query(text, values);
+    const text = `DELETE FROM ${tableName} WHERE ${fieldName} = ${fieldValue};`;
+    res = await client.query(text);
   } catch (err) {
     console.log(err.stack);
   }

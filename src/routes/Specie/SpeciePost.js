@@ -1,8 +1,9 @@
-import insert from '../../database/Select';
+import insert from '../../database/Insert';
 
-const speciepost = (req, res) => {
-  const { body } = req.body;
-  const data = insert(body, 'specie');
+const speciepost = async (req, res) => {
+  const { body } = req;
+  const data = await insert('species', body);
+  console.log(data);
   if (data == null) {
     res.status(400).send(data.id);
   } else {

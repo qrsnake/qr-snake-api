@@ -1,21 +1,19 @@
 import connection from './db';
 
-const select = async (id, table) => {
+const select = async (tableName, fieldName, fieldValue) => {
   let res = null;
   const client = connection();
-  if (id == null) {
+  if (fieldValue == null) {
     try {
-      const text = 'SELECT * FROM $1;';
-      const values = [table];
-      res = await client.query(text, values);
+      const text = `SELECT * FROM ${tableName};`;
+      res = await client.query({ text });
     } catch (err) {
       console.log(err.stack);
     }
   } else {
     try {
-      const text = 'SELECT * FROM $1 WHERE id = $2;';
-      const values = [table, id];
-      res = await client.query(text, values);
+      const text = `SELECT * FROM ${tableName} WHERE ${fieldName} = ${fieldValue};`;
+      res = await client.query({ text });
     } catch (err) {
       console.log(err.stack);
     }

@@ -1,11 +1,12 @@
 import select from '../../database/Select';
 
-const usergetall = (req, res) => {
-  const { data } = select(null, 'user');
-  if (data == null) {
-    res.status(404).send(data);
+const usergetall = async (req, res) => {
+  const { rows } = await select('users', null, null);
+  console.log(rows);
+  if (!rows.length) {
+    res.status(404).send(rows);
   } else {
-    res.status(200).send(data);
+    res.status(200).send(rows);
   }
 };
 

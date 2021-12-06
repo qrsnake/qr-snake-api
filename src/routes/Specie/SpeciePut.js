@@ -1,14 +1,15 @@
 import update from '../../database/Update';
 import select from '../../database/Select';
 
-const specieput = (req, res) => {
+const specieput = async (req, res) => {
   const { id } = req.params;
-  const { body } = req.body;
-  const data = select(id, 'specie');
-  if (data == null) {
+  const { body } = req;
+  const { rows } = await select('species', 'id', id);
+  console.log(rows);
+  if (!rows.length) {
     res.status(404).send(id);
   } else {
-    update(id, body, 'specie');
+    await update('species', 'id', id, body);
     res.status(200).send(id);
   }
 };

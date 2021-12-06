@@ -1,24 +1,18 @@
 import connection from './db';
 
-const update = async (id, data, table) => {
+const update = async (tableName, fieldName, fieldValue, data) => {
   let res = null;
   const client = connection();
   try {
-    const text = 'UPDATE $1 SET (id, $2) = (DEFAULT, $3) WHERE id = $4;';
-    const auxkeys = '';
-    const jkeys = JSON.keys(data).join(', ');
-    jkeys.forEach((i) => {
-      auxkeys.concat(i, ', ');
-    });
-    auxkeys.slice(0, auxkeys.length - 2);
-    const auxdata = '';
-    const jdata = JSON.values(data).join(', ');
-    jdata.forEach((j) => {
-      auxdata.concat(j, ', ');
-    });
-    auxdata.slice(0, auxdata.length - 2);
-    const values = [table, auxkeys, auxdata, id];
-    res = await client.query(text, values);
+    const keys = Object.keys(data).join(', ');
+    const value = Object.values(data).map((v) => {
+      if (typeof v === 'string') {
+        return `'${v}'`;
+      }
+      return v;
+    }).join(', ');
+    const text = `UPDATE ${tableName} SET (${keys}) = (${value}) WHERE ${fieldName} = ${fieldValue};`;
+    res = await client.query({ text });
   } catch (err) {
     console.log(err.stack);
   }
